@@ -1,6 +1,7 @@
 ﻿// import redux from 'redux';
 
 import {createStore} from "redux";
+import Actions from "./actions.js";
 
 const initialState = {
     counter : 0,
@@ -10,22 +11,22 @@ const initialState = {
 //! but it provides immutability of state =>  always returns a totally new state object
 const counterReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'increment':
+        case Actions.INCREMENT:
             return {
                 ...state,
                 counter: state.counter + 1
             }
-        case 'decrement':
+        case Actions.DECREMENT:
             return {
                 ...state,
                 counter: state.counter - 1
             }
-        case 'increase':
+        case Actions.INCREASE:
             return {
                 ...state,
                 counter: state.counter + action.payload.value
             }
-        case 'toggle':
+        case Actions.TOGGLE:
             return {
                 ...state,
                 showCounter: !state.showCounter
