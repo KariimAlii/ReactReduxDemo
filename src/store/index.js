@@ -11,7 +11,7 @@ const initialState = {
 }
 
 //! We are creating of our global state (counter-related state)
-createSlice({
+const counterSlice = createSlice({
     name: 'COUNTER',
     initialState,
     reducers: {
@@ -22,35 +22,8 @@ createSlice({
     }
 })
 
-//! Reducer is a pure function that updates the store
-//! but it provides immutability of state =>  always returns a totally new state object
-const counterReducer = (state = initialState, action) => {
-    switch(action.type) {
-        case Actions.INCREMENT:
-            return {   //! State Immutability
-                ...state,
-                counter: state.counter + 1
-            }
-        case Actions.DECREMENT:
-            return {
-                ...state,
-                counter: state.counter - 1
-            }
-        case Actions.INCREASE:
-            return {
-                ...state,
-                counter: state.counter + action.payload.value
-            }
-        case Actions.TOGGLE:
-            return {
-                ...state,
-                showCounter: !state.showCounter
-            }
-        default:
-            return state;
-    }
-}
 
-const store = createStore(counterReducer);
+
+const store = createStore(counterSlice.reducer);
 
 export default store;
