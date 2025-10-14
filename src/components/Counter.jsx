@@ -7,6 +7,7 @@ const Counter = () => {
     //! Counter Component <---------Subscribe-----------> Store
     //! Whenever the value (state.counter) is updated in store => it will send the new value to the component
     const counter = useSelector(state => state.counter)
+    const showCounter = useSelector(state => state.showCounter)
 
     const incrementHandler = () => {
         dispatch( {
@@ -26,12 +27,19 @@ const Counter = () => {
             }
         } )
     }
-  const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+      dispatch( {
+          type: 'toggle'
+      } )
+  };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{ counter }</div>
+        {showCounter && (
+            <div className={classes.value}>{counter}</div>
+        )}
+
         <div>
             <button onClick={incrementHandler}>Increment</button>
             <button onClick={() => increaseHandler(5)}>Increase by 5</button>
