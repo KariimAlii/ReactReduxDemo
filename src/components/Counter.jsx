@@ -1,6 +1,7 @@
 import classes from './Counter.module.css';
 import {useDispatch, useSelector} from "react-redux";
 import Actions from "../store/actions.js";
+import {counterActions} from "../store/index.js";
 
 const Counter = () => {
     const dispatch = useDispatch();
@@ -11,27 +12,24 @@ const Counter = () => {
     const showCounter = useSelector(state => state.showCounter)
 
     const incrementHandler = () => {
-        dispatch( {
-            type: Actions.INCREMENT
-        } )
+        dispatch(counterActions.increment());
     }
     const decrementHandler = () => {
-        dispatch( {
-            type: Actions.DECREMENT
-        } )
+        dispatch(counterActions.decrement());
     }
     const increaseHandler = (value) => {
-        dispatch( {
-            type: Actions.INCREASE,
-            payload: {
-                value
-            }
-        } )
+        //! The Redux Action object is created like that
+        //! {
+        //!     type: SOME_UNIQUE_IDENTIFIER,
+        //!     payload : { value }
+        //! }
+        //! The Payload is the default property name used by Redux Toolkit
+        dispatch(counterActions.increase({
+            value
+        }))
     }
   const toggleCounterHandler = () => {
-      dispatch( {
-          type: Actions.TOGGLE
-      } )
+      dispatch(counterActions.toggleCounter());
   };
 
   return (

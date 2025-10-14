@@ -1,9 +1,7 @@
 ﻿// import redux from 'redux';
 
-import {createStore} from "redux";
-import Actions from "./actions.js";
 import {createSlice, configureStore} from "@reduxjs/toolkit";
-import {decrement, increase, increment, toggle} from "./reducers.js";
+import {decrement, increase, increment, toggleCounter} from "./reducers.js";
 
 const initialState = {
     counter : 0,
@@ -18,9 +16,11 @@ const counterSlice = createSlice({
         increment,
         decrement,
         increase,
-        toggle
+        toggleCounter
     }
 })
+
+
 
 
 //! configureStore(): provides merging multiple reducers for multiple slices
@@ -28,10 +28,17 @@ const counterSlice = createSlice({
 //! { reducer: }  Redux still need one main reducer function which is responsible for the global state
 //! the configureStore() will merge those multiple reducers into one global reducer
 const store = configureStore({
-    //! reducer: counterSlice.reducer,   ✅✅ you can use single reducer function
-    reducer: {  //! you can use a map of reducers ✅✅
-        counter : counterSlice.reducer
-    }
+    reducer: counterSlice.reducer,   //! ✅✅ you can use single reducer function
+    //! you can use a map of reducers ✅✅
+    // reducer: {
+    //     counter : counterSlice.reducer
+    // }
 });
+
+//! Redux Toolkit provides actions objects with unique identifiers
+//! counterSlice.actions.toggleCounter
+//!
+
+export const counterActions = counterSlice.actions;
 
 export default store;
