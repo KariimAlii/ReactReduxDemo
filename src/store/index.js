@@ -6,7 +6,8 @@ const initialState = {
     counter : 0,
     showCounter: true
 }
-
+//! Reducer is a pure function that updates the store
+//! but it provides immutability of state =>  always returns a totally new state object
 const counterReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'increment':
