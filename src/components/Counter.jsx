@@ -8,8 +8,8 @@ const Counter = () => {
     //! Redux will set a subscription to redux store from this component
     //! Counter Component <---------Subscribe-----------> Store
     //! Whenever the value (state.counter) is updated in store => it will send the new value to the component
-    const counter = useSelector(state => state.counter)
-    const showCounter = useSelector(state => state.showCounter)
+    const counter = useSelector(state => state.counter.counter)
+    const showCounter = useSelector(state => state.counter.showCounter)
 
     const incrementHandler = () => {
         dispatch(counterActions.increment());
