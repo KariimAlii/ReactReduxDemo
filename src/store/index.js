@@ -1,9 +1,9 @@
 ﻿// import redux from 'redux';
 
 import {createSlice, configureStore} from "@reduxjs/toolkit";
-import {decrement, increase, increment, toggleCounter} from "./reducers.js";
+import {decrement, increase, increment, login, logout, toggleCounter} from "./reducers.js";
 
-const initialState = {
+const initialCounterState = {
     counter : 0,
     showCounter: true
 }
@@ -11,12 +11,25 @@ const initialState = {
 //! We are creating of our global state (counter-related state)
 const counterSlice = createSlice({
     name: 'COUNTER',
-    initialState,
+    initialState: initialCounterState,
     reducers: {
         increment,
         decrement,
         increase,
         toggleCounter
+    }
+})
+
+const initialAuthState = {
+    isAuthenticated: false,
+}
+
+const authSlice = createSlice({
+    name: 'AUTHENTICATION',
+    initialState: initialAuthState,
+    reducers: {
+        login,
+        logout
     }
 })
 
@@ -31,7 +44,8 @@ const store = configureStore({
     //! reducer: counterSlice.reducer,   //! ✅✅ you can use single reducer function
     //! you can use a map of reducers ✅✅
     reducer: {
-        counter : counterSlice.reducer
+        counter : counterSlice.reducer,
+        auth: authSlice.reducer
     }
 });
 
@@ -40,5 +54,6 @@ const store = configureStore({
 //!
 
 export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
 
 export default store;

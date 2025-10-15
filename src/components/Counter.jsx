@@ -21,7 +21,7 @@ const Counter = () => {
         //! The Redux Action object is created like that
         //! {
         //!     type: SOME_UNIQUE_IDENTIFIER,
-        //!     payload : { value }
+        //!     payload : { key: value }
         //! }
         //! The Payload is the default property name used by Redux Toolkit
         dispatch(counterActions.increase({

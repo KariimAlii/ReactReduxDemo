@@ -13,3 +13,12 @@ export const increase = (state, action) => {
 export const toggleCounter = (state) => {
     state.showCounter = !state.showCounter
 }
+
+
+export const login = (state) => {
+    state.isAuthenticated = true
+}
+
+export const logout = (state) => {
+    state.isAuthenticated = false
+}
